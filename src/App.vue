@@ -1,11 +1,23 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
   <router-view/>
+  <header-All />
+  <main-Main />
 </template>
+<script>
+import BackgroundLogin from '@/components/BackgroundLogin.vue'
+import CenterMain from '@/components/CenterMain.vue'
+import HeaderAll from '@/components/HeaderAll.vue'
+import MainMain from '@/components/MainMain.vue'
 
+export default {
+  components: {
+    'background-Login': BackgroundLogin,
+    'center-Main': CenterMain,
+    'header-All': HeaderAll,
+    'main-Main': MainMain
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
