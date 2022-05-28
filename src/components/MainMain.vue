@@ -1,5 +1,6 @@
 <template>
     <div class="all_cards">
+        {{ posts }}
         <div class="card35" v-for="(items, index) in posts" :key="index">
             <div class="card" v-for="(item, index) in items" :key="index">
                 <div class="left_bar">
@@ -58,9 +59,12 @@ export default {
     errors: []
   }),
   created () {
-    axios.post('http://127.0.0.1:8000/lenta_sub')
+    axios.post('http://127.0.0.1:8000/check_ses')
       .then(response => {
-        this.posts = response.data
+        console.log(response.data)
+        if (String(response.data) === 'true') {
+          location.href = '/login'
+        }
       })
       .catch(e => {
         this.errors.push(e)

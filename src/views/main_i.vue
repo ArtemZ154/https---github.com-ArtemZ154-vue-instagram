@@ -274,3 +274,17 @@ header {
     border-radius: 38px;
 }
 </style>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import mainMain from '@/components/MainMain.vue'
+import headerAll from '@/components/HeaderAll.vue'
+
+export default defineComponent({
+  name: 'main_i',
+  components: {
+    'main-Main': mainMain,
+    headerAll: headerAll
+  }
+})
+</script>
