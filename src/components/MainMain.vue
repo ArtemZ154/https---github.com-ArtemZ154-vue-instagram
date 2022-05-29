@@ -59,15 +59,20 @@ export default {
     errors: []
   }),
   created () {
-    axios.post('http://127.0.0.1:8000/check_ses')
+    console.log(123)
+    axios({
+      method: 'post',
+      url: 'http://127.0.0.1:8000/check_ses',
+      withCredentials: true
+    })
       .then(response => {
-        console.log(response.data)
-        if (String(response.data) === 'true') {
+        console.log(response)
+        if (String(response.data) === 'false') {
           location.href = '/login'
         }
       })
       .catch(e => {
-        this.errors.push(e)
+        console.log(e)
       })
   }
 }

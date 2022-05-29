@@ -326,11 +326,12 @@ export default {
       console.log(this.loginin)
       axios({
         method: 'post',
-        url: 'http://127.0.0.1:8000/login_s',
         data: {
           login: this.loginin,
           password: this.passwordin
-        }
+        },
+        withCredentials: true,
+        url: 'http://127.0.0.1:8000/login_s'
       })
         .then(response => {
           console.log(response)
