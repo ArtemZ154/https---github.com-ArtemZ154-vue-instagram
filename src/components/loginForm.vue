@@ -335,13 +335,13 @@ export default {
       })
         .then(response => {
           console.log(response)
-          if (String(response.data) === 'log_true') {
-            console.log(312)
-            location.href = '/'
-          } if (String(response.data) === 'true') {
-            console.log(312)
-            location.href = '/'
-          }
+        //   if (String(response.data) === 'log_true') {
+        //     console.log(312)
+        //     location.href = '/'
+        //   } if (String(response.data) === 'true') {
+        //     console.log(312)
+        //     location.href = '/'
+        //   }
         })
         .catch(e => {
           console.log(e)
