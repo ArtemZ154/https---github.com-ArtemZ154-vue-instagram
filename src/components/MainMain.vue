@@ -74,7 +74,7 @@
 
 <script>
 import axios from 'axios'
-
+axios.defaults.withCredentials = true
 export default {
   data: () => ({
     posts: {},
@@ -93,7 +93,7 @@ export default {
       .then((response) => {
         console.log(response)
         if (String(response.data) === 'false') {
-          console.log(document.cookie)
+          location.href = '/login'
         }
       })
       .catch((e) => {

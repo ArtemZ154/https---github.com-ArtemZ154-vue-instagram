@@ -313,7 +313,7 @@ header {
 
 <script>
 import axios from 'axios'
-
+axios.defaults.withCredentials = true
 export default {
   data () {
     return {
@@ -323,7 +323,6 @@ export default {
   },
   methods: {
     flogin () {
-      console.log(this.loginin)
       axios({
         method: 'post',
         data: {
@@ -335,13 +334,13 @@ export default {
       })
         .then(response => {
           console.log(response)
-        //   if (String(response.data) === 'log_true') {
-        //     console.log(312)
-        //     location.href = '/'
-        //   } if (String(response.data) === 'true') {
-        //     console.log(312)
-        //     location.href = '/'
-        //   }
+          if (String(response.data) === 'log_true') {
+            console.log(312)
+            location.href = '/'
+          } if (String(response.data.user) === this.loginin) {
+            document.cookie = 'sid_user=' + response.data.login
+            console.log(document.cookie)
+          }
         })
         .catch(e => {
           console.log(e)

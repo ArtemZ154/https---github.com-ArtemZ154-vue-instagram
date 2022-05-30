@@ -20,13 +20,12 @@
 <style>
 @font-face {
   font-family: 'Montserrat';
-  src: url(http://localhost:8000/font-family/Montserrat-Light.ttf);
+  src: url(http://127.0.0.1:8000/font-family/Montserrat-Light.ttf);
 }
 @font-face {
   font-family: 'Montserrat_Black';
-  src: url(http://localhost:8000/font-family/Montserrat-Bold.ttf);
+  src: url(http://127.0.0.1:8000/font-family/Montserrat-Bold.ttf);
 }
-
 body {
     margin: 0;
 }
@@ -65,7 +64,7 @@ header {
 
 .logo p {
     margin: 0 auto;
-    color: black;
+    color: white;
     font-family: 'Montserrat_Black';
     font-size: 15px;
 }
@@ -75,5 +74,209 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.card {
+    width: 640px;
+    height: 389px;
+    margin: 0 auto;
+    display: flex;
+    justify-content:right;
+    box-shadow: 6px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 30px 30px 30px 30px;
+    margin-bottom: 20px;
+}
+
+.left_bar {
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.left_bar img {
+    margin: 0 auto;
+    width: 389px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 30px;
+    pointer-events: none
+}
+
+.nav_card {
+    width: 221px;
+    height: 27px;
+    margin-top: 15px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left_button {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left_button a{
+    display: flex;
+    width: 18px;
+    height: 18px;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+
+.left_button a img{
+    width: 100%;
+    height: 100%;
+}
+
+.like img {
+    margin-right: 18px;
+    cursor: pointer;
+    z-index: 100000;
+}
+
+.left_button p{
+    font-family: 'Montserrat_Black';
+    font-size: 9px;
+    color: #000000;
+    margin: 0px;
+    margin-top: 2px;
+}
+
+.right_bar {
+    position: relative;
+    z-index: 1;
+    width: 251px;
+    height: 389px;
+}
+
+.like {
+    z-index: 10000;
+}
+
+.right_button button {
+    font-family: 'Montserrat_Black';
+    width: 80px;
+    height: 23px;
+    background: #FF4848;
+    border-radius: 15px;
+    border: none;
+    color: #FFFFFF;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    margin-left: 15px;
+}
+
+.account img{
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+    border-radius: 100%;
+}
+
+.account p{
+    font-family: 'Montserrat_Black';
+    font-size: 12px;
+    color: #FF7A00;
+    padding-right: 5px;
+}
+
+.account a{
+    width: 10px;
+    height: 10px;
+}
+
+.account a img{
+    width: 100%;
+    height: 100%;
+}
+
+.account_me_comment {
+    width: 220px;
+    height: 55px;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.account_me_comment p{
+    font-family: 'Montserrat_Black';
+    font-size: 9px;
+    color: #000000;
+    margin: 0px;
+}
+
+.comment {
+    width: 100%;
+    height: 197px;
+}
+
+.comment_p {
+    font-family: 'Montserrat_Black';
+    font-size: 14px;
+    color: #000000;
+    padding-top: 14px;
+    padding-left: 15px;
+    margin-bottom: 10px;
+}
+
+.comment_p p{
+    margin: 0px;
+}
+
+.person {
+    display: flex;
+    padding-left: 30px;
+    align-items: center;
+}
+
+.person img {
+    width: 16px;
+    height: 16px;
+    padding-right: 5px;
+}
+
+.person p {
+    font-size: 8px;
+    color: #000000;
+    padding-right: 5px;
+}
+
+.manyperson {
+    width: 100%;
+    height: 120px;
+}
+
+.new_comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new_comment img {
+    width: 25px;
+    height: 25px;
+    padding-left: 15px;
+
+}
+
+.new_comment input{
+    padding-left: 10px;
+    font-family: 'Montserrat';
+    font-size: 8px;
+    color: #A6A6A6;
+    width: 170px;
+    height: 25px;
+    margin-right: 15px;
+    border: 1px solid #FF4848;
+    border-radius: 38px;
 }
 </style>

@@ -58,7 +58,7 @@ header {
 
 .logo p {
     margin: 0 auto;
-    color: black;
+    color: white;
     font-family: 'Montserrat_Black';
     font-size: 15px;
 }
