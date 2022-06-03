@@ -1,11 +1,11 @@
 <template>
     <header>
         <div class="logo">
-            <h1>LOGO</h1>
+            <h1>OSMO</h1>
         </div>
     </header>
     <div class="background_registration_line_black"></div>
-    <main>
+    <main style="margin: none; box-shadow: none; margin-bottom: none; width: auto">
         <background-Login />
         <login-Form />
     </main>
@@ -20,6 +20,11 @@
 @font-face {
     font-family: 'Montserrat_Black';
     src: url(http://127.0.0.1:8000/font-family/Montserrat-Bold.ttf);
+}
+
+main {
+    width: 100%;
+    box-shadow: none;
 }
 
 body {

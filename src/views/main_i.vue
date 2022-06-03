@@ -1,13 +1,10 @@
 <template>
-    <body>
-        <header>
-            <header-All />
-        </header>
-        <main>
-            <main-Main />
-        </main>
-    </body>
-
+    <header>
+        <header-All />
+    </header>
+    <main style="box-shadow: none">
+        <main-Main />
+    </main>
 </template>
 
 <style>
@@ -24,12 +21,20 @@ body {
     margin: 0;
 }
 
+.left_bar {
+    z-index: -100000000;
+}
+
 header {
     margin: 0 auto;
     margin-top: 25px;
     margin-bottom: 30px;
     width: 640px;
     height: 40px;
+}
+
+.all_cards {
+    margin-top: 25px;
 }
 
 .icon {
@@ -128,6 +133,15 @@ header {
     height: 100%;
 }
 
+.like {
+    z-index: 100000;
+}
+
+.new_comment img {
+    border-radius: 30px;
+    margin-left: 15px;
+}
+
 .like img {
     margin-right: 18px;
     cursor: pointer;
@@ -177,7 +191,7 @@ header {
     border-radius: 100%;
 }
 
-.account p{
+.account router-link{
     font-family: 'Montserrat_Black';
     font-size: 12px;
     color: #FF7A00;
@@ -258,8 +272,6 @@ header {
 .new_comment img {
     width: 25px;
     height: 25px;
-    padding-left: 15px;
-
 }
 
 .new_comment input{
@@ -272,6 +284,31 @@ header {
     margin-right: 15px;
     border: 1px solid #FF4848;
     border-radius: 38px;
+}
+
+.left_bar {
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.right_bar {
+    position: relative;
+    z-index: 1;
+    width: 251px;
+    height: 389px;
+    transition-duration: 0.8s;
+    opacity: 1;
+    transition:1s;
+}
+
+.right_bar:active {
+    transition-delay: 0.3s;
+    opacity: 0;
+    width: 0%;
 }
 </style>
 

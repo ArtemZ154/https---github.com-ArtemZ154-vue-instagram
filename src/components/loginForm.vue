@@ -1,7 +1,7 @@
 <template>
-    <div class="form_registr">
+    <div class="form_registr" style="width: 450px; height: 382px;">
         <div class="form_registr_logo">
-            <h1>LOGO</h1>
+            <h1>OSMO</h1>
         </div>
         <div class="form_registr_input">
             <div class="form_registr_input_email">
@@ -14,17 +14,6 @@
             </div>
             <div class="button_sens">
                 <button class="logup" @click="flogin">Log up</button>
-                <div class="logo_social">
-                    <div>
-                        <a
-                            href="https://accounts.google.com/AddSession/identifier?hl=ru&continue=https%3A%2F%2Fwww.google.ru%2F&ec=GAlAmgQ&flowName=GlifWebSignIn&flowEntry=AddSession">
-                            <img src="http://127.0.0.1:8000/img/icon/icons8-google-2 1.png" alt="" class="logo_google">
-                        </a>
-                    </div>
-                    <div><a href=""><img src="http://127.0.0.1:8000/img/icon/Group 22.png" alt="" class="logo_facebook"></a></div>
-                    <div style="padding-right: 0px;"><a href="https://vk.com/"><img
-                                src="http://127.0.0.1:8000/img/icon/Group 21.png" alt="" class="logo_vk"></a></div>
-                </div>
             </div>
             <div class="login">
                 <p>Need an account? <a href="/registration" style="text-decoration: none;">Sign in</a></p>
@@ -35,6 +24,10 @@
 </template>
 
 <style>
+main {
+    width: 100%;
+}
+
 @font-face {
     font-family: 'Montserrat';
     src: url(http://127.0.0.1:8000/font-family/Montserrat-Light.ttf);
@@ -313,7 +306,10 @@ header {
 
 <script>
 import axios from 'axios'
+
+const addr = 'http://127.0.0.1:8000'
 axios.defaults.withCredentials = true
+
 export default {
   data () {
     return {
@@ -323,23 +319,26 @@ export default {
   },
   methods: {
     flogin () {
-      axios({
-        method: 'post',
-        data: {
+      axios.post(
+        addr + '/login_s',
+        {
           login: this.loginin,
           password: this.passwordin
         },
-        withCredentials: true,
-        url: 'http://127.0.0.1:8000/login_s'
-      })
+        {
+          withCredentials: true
+        }
+      )
         .then(response => {
-          console.log(response)
           if (String(response.data) === 'log_true') {
-            console.log(312)
             location.href = '/'
-          } if (String(response.data.user) === this.loginin) {
-            document.cookie = 'sid_user=' + response.data.login
+          } else if (String(response.data[0]) === 'true') {
+            const now = new Date()
+            const a = 'user_sid=' + String(response.data[1])
+            document.cookie = a + ';expires=' + now + ';path=/'
+            document.cookie = 'login=' + this.loginin + ';expires=' + now + ';path=/'
             console.log(document.cookie)
+            location.href = '/'
           }
         })
         .catch(e => {

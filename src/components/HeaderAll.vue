@@ -2,14 +2,14 @@
     <header>
         <div class="icon">
             <div class="iconleft">
-                <a href=""><img src="http://127.0.0.1:8000/img/main/iconmain/home (1) 1.png" alt=""></a>
-                <a href=""><img src="http://127.0.0.1:8000/img/main/iconmain/user (2) 1.png" alt=""></a>
+                <a href="/"><img src="http://127.0.0.1:8000/img/main/iconmain/home (1) 1.png" alt=""></a>
+                <a :href="'http://localhost:8080/account/' + this.account"><img src="http://127.0.0.1:8000/img/main/iconmain/user (2) 1.png" alt=""></a>
             </div>
-            <div class="logo">
-                <p>LOGO</p>
+            <div class="logo" style="margin-right: 115px;">
+                <p>OSMO</p>
             </div>
             <div class="iconright">
-                <a href=""><img src="http://127.0.0.1:8000/img/main/iconmain/magnifying-glass (2) 1.png" alt=""></a>
+                <a href="" @click="exit_a"><img src="http://127.0.0.1:8000/img/icon/exit 1.png" alt=""></a>
                 <a href=""><img src="http://127.0.0.1:8000/img/main/iconmain/heart (1) 1.png" alt=""></a>
                 <a href=""><img src="http://127.0.0.1:8000/img/main/iconmain/direct 1.png" alt=""></a>
             </div>
@@ -264,8 +264,6 @@ header {
 .new_comment img {
     width: 25px;
     height: 25px;
-    padding-left: 15px;
-
 }
 
 .new_comment input{
@@ -280,3 +278,49 @@ header {
     border-radius: 38px;
 }
 </style>
+
+<script>
+import axios from 'axios'
+
+const addr = 'http://127.0.0.1:8000'
+/*eslint-disable */
+function getCookie (name) {
+  const matches = document.cookie.match(new RegExp(
+    '(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
+  ))
+  return matches ? decodeURIComponent(matches[1]) : undefined
+}
+/* eslint-enable */
+
+export default {
+  data: () => ({
+    posts: {},
+    errors: [],
+    el: document.querySelector('.right_bar'),
+    account: getCookie('login')
+  }),
+  methods: {
+    exit_a () {
+      axios
+        .post(
+          addr + '/exit_account',
+          {},
+          {
+            withCredentials: true
+          }
+        )
+        .then(() => {
+          const cookies = document.cookie.split(/;/)
+          for (let i = 0, len = cookies.length; i < len; i++) {
+            const cookie = cookies[i].split(/=/)
+            document.cookie = cookie[0] + '=;max-age=-1'
+          }
+          location.href = '/login'
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    }
+  }
+}
+</script>

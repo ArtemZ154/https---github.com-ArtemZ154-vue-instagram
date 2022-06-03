@@ -20,6 +20,21 @@ body {
     margin: 0 auto;
 }
 
+.background_registration_line img{
+    margin-right: 25px;
+}
+
+.all_photo {
+    margin-left: 50px;
+}
+
+.all_photo img {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+}
+
 header {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -28,9 +43,7 @@ header {
 .logo {
     width: 210px;
     height: 50px;
-    background-color: #000000;
     border-radius: 32px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -286,6 +299,8 @@ header {
 
 <script>
 import axios from 'axios'
+
+const addr = 'http://127.0.0.1:8000'
 axios.defaults.withCredentials = true
 export default {
   data: () => ({
@@ -293,7 +308,7 @@ export default {
     errors: []
   }),
   created () {
-    axios.post('http://127.0.0.1:8000/log_reg_photo')
+    axios.post(addr + '/log_reg_photo', {}, { withCredentials: true })
       .then(response => {
         this.posts = response.data
       })

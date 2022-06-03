@@ -8,11 +8,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@vue/cli-plugin-eslint": "^5.0.4",
     "axios": "^0.27.2",
+    "axios-cookiejar-support": "^4.0.2",
+    "blueimp-file-upload": "^10.32.0",
     "core-js": "^3.8.3",
     "jquery": "^3.6.0",
+    "tough-cookie": "^4.0.0",
     "vue": "^3.2.13",
     "vue-axios": "^3.4.1",
+    "vue-cookie": "^1.1.4",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },
@@ -20,7 +25,6 @@
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
