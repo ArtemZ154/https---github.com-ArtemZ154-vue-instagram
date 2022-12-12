@@ -80,52 +80,32 @@ export default {
   data: () => ({
     posts: {},
     errors: [],
-    account: getCookie('login')
+    account: (localStorage.getItem('login')).slice(0, -1).replace('"', '')
   }),
   created () {
-    console.log(123)
-    axios
-      .post(
-        addr + '/check_ses',
-        {
-          user_sid: getCookie('user_sid')
-        },
-        {
-          withCredentials: true
-        }
-      )
-      .then((response) => {
-        console.log(response)
-        if (String(response.data) === 'false') {
-          location.href = '/login'
-        }
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-    axios
-      .post(
-        addr + '/lenta_sub',
-        {
-          user_sid: getCookie('user_sid')
-        },
-        {
-          withCredentials: true
-        }
-      )
-      .then((response) => {
-        let a = 0
-        console.log(response.data[0].length)
-        a = response.data[0]
-        for (let i = 0; i < a.length; i++) {
-          a[i].photo_post = addr + a[i].photo_post
-          a[i].avatar = addr + a[i].avatar
-        }
-        this.posts = response.data
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+    if (localStorage.getItem('token') === null) {
+      location.href = '/login'
+    } else {
+      axios
+        .post(
+          addr + '/lenta_sub',
+          {
+            user_sid: getCookie('user_sid')
+          },
+          {
+            withCredentials: true,
+            headers: {
+              'x-access-token': localStorage.getItem('token')
+            }
+          }
+        )
+        .then((response) => {
+          console.log(response.data)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    }
   },
   methods: {
     like_add () {

@@ -6,6 +6,33 @@
     </div>
 </template>
 
+<script>
+import axios from 'axios'
+
+const addr = 'http://127.0.0.1:8000'
+axios.defaults.withCredentials = true
+export default {
+  data: () => ({
+    posts: { 0: [], 1: [], 2: [], 3: [] },
+    errors: []
+  }),
+  created () {
+    axios.post(addr + '/post/randomForLoginPost', {}, { withCredentials: true })
+      .then(response => {
+        for (let i = 0; i < 4; i++) {
+          for (let j = i * 6; j < i * 6 + 6; j++) {
+            this.posts[i].push(response.data[j])
+          }
+        }
+        console.log(this.posts)
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+  }
+}
+</script>
+
 <style>
 @font-face {
   font-family: 'Montserrat';
@@ -296,25 +323,3 @@ header {
     color: #000000;
 }
 </style>
-
-<script>
-import axios from 'axios'
-
-const addr = 'http://127.0.0.1:8000'
-axios.defaults.withCredentials = true
-export default {
-  data: () => ({
-    posts: {},
-    errors: []
-  }),
-  created () {
-    axios.post(addr + '/log_reg_photo', {}, { withCredentials: true })
-      .then(response => {
-        this.posts = response.data
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
-  }
-}
-</script>

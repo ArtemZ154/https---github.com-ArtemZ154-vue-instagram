@@ -280,10 +280,7 @@ header {
 </style>
 
 <script>
-import axios from 'axios'
-
-const addr = 'http://127.0.0.1:8000'
-/*eslint-disable */
+/* eslint-disable */
 function getCookie (name) {
   const matches = document.cookie.match(new RegExp(
     '(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
@@ -297,29 +294,14 @@ export default {
     posts: {},
     errors: [],
     el: document.querySelector('.right_bar'),
-    account: getCookie('login')
+    account: (localStorage.getItem('login')).slice(0, -1).replace('"', '')
   }),
   methods: {
     exit_a () {
-      axios
-        .post(
-          addr + '/exit_account',
-          {},
-          {
-            withCredentials: true
-          }
-        )
-        .then(() => {
-          const cookies = document.cookie.split(/;/)
-          for (let i = 0, len = cookies.length; i < len; i++) {
-            const cookie = cookies[i].split(/=/)
-            document.cookie = cookie[0] + '=;max-age=-1'
-          }
-          location.href = '/login'
-        })
-        .catch((e) => {
-          console.log(e)
-        })
+      localStorage.removeItem('token')
+      localStorage.removeItem('login')
+      localStorage.removeItem('name')
+      localStorage.removeItem('surname')
     }
   }
 }

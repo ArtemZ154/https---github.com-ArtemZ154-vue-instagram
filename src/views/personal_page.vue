@@ -1,6 +1,6 @@
 <template>
     <header>
-        <header-All />
+        <header-Allll />
     </header>
     <main style="box-shadow: 0px 10px 50px 5px rgba(0, 0, 0, 0.2); width: 640px;">
         <upper-page />
@@ -19,7 +19,7 @@ export default defineComponent({
   name: 'personal_page',
   components: {
     'upper-page': upPerPage,
-    'header-All': headerAll,
+    'header-Allll': headerAll,
     'bottom-page': bottomPerPage
   }
 })

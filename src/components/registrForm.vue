@@ -11,14 +11,17 @@
             </div>
             <div class="form_registr_input_email">
                 <div><img src="http://127.0.0.1:8000/img/background_registr\icon/mail 1.png" alt=""></div>
-                <input type="text" placeholder="Email" v-model="e_mailin">
+                <input type="text" placeholder="E-mail" v-model="e_mailin">
             </div>
             <div class="form_registr_input_surname">
-                <input type="text" placeholder="Name and sername" v-model="name_surnamein">
+                <input type="text" placeholder="Name" v-model="namein">
+            </div>
+            <div class="form_registr_input_surname">
+                <input type="text" placeholder="Surname" v-model="surnamein">
             </div>
             <div class="form_registr_input_username">
                 <div><img src="http://127.0.0.1:8000/img/background_registr\icon/user 1.png" alt=""></div>
-                <input type="text" placeholder="User name" v-model="loginin">
+                <input type="text" placeholder="Login" v-model="loginin">
             </div>
             <div class="form_registr_input_password">
                 <div><img src="http://127.0.0.1:8000/img/background_registr\icon/Vector (3).png" alt=""></div>
@@ -89,7 +92,7 @@ header {
 .form_registr {
     position: absolute;
     width: 450px;
-    height: 501px;
+    height: 551px;
     right: 390px;
     top: 280px;
     background: #FFFFFF;
@@ -315,30 +318,33 @@ export default {
       passwordin: '',
       e_mailin: '',
       phonein: '',
-      name_surnamein: ''
+      namein: '',
+      surnamein: ''
     }
   },
   methods: {
     flogin () {
       axios.post(
-        addr + '/registration_s',
+        addr + '/users/registration',
         {
           login: this.loginin,
           password: this.passwordin,
           e_mail: this.e_mailin,
           phone: this.phonein,
-          name_surname: this.name_surnamein
+          name: this.namein,
+          surname: this.surnamein
+
         },
         {
           withCredentials: true
         }
       )
         .then(response => {
-          if (String(response.data) === 'true') {
-            location.href = '/login'
-          } else if (String(response.data) === 'false') {
-            location.href = '/registration'
-          }
+          localStorage.setItem('token', JSON.stringify(response.data.token))
+          localStorage.setItem('name', JSON.stringify(response.data.name))
+          localStorage.setItem('surname', JSON.stringify(response.data.surname))
+          localStorage.setItem('login', JSON.stringify(response.data.login))
+          location.href = '/'
         })
         .catch(e => {
           console.log(e)

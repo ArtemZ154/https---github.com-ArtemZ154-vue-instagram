@@ -23,6 +23,48 @@
     </div>
 </template>
 
+<script>
+import axios from 'axios'
+
+const addr = 'http://127.0.0.1:8000'
+axios.defaults.withCredentials = true
+
+export default {
+  data () {
+    return {
+      loginin: '',
+      passwordin: ''
+    }
+  },
+  methods: {
+    flogin () {
+      axios.post(
+        addr + '/users/login',
+        {
+          login: this.loginin,
+          password: this.passwordin
+        },
+        {
+          withCredentials: true
+        }
+      )
+        .then(response => {
+          if (response.data.token) {
+            localStorage.setItem('token', JSON.stringify(response.data.token))
+            localStorage.setItem('name', JSON.stringify(response.data.name))
+            localStorage.setItem('surname', JSON.stringify(response.data.surname))
+            localStorage.setItem('login', JSON.stringify(response.data.login))
+            location.href = '/'
+          }
+        })
+        .catch(e => {
+          console.log(e)
+        })
+    }
+  }
+}
+</script>
+
 <style>
 main {
     width: 100%;
@@ -303,48 +345,3 @@ header {
     color: #000000;
 }
 </style>
-
-<script>
-import axios from 'axios'
-
-const addr = 'http://127.0.0.1:8000'
-axios.defaults.withCredentials = true
-
-export default {
-  data () {
-    return {
-      loginin: '',
-      passwordin: ''
-    }
-  },
-  methods: {
-    flogin () {
-      axios.post(
-        addr + '/login_s',
-        {
-          login: this.loginin,
-          password: this.passwordin
-        },
-        {
-          withCredentials: true
-        }
-      )
-        .then(response => {
-          if (String(response.data) === 'log_true') {
-            location.href = '/'
-          } else if (String(response.data[0]) === 'true') {
-            const now = new Date()
-            const a = 'user_sid=' + String(response.data[1])
-            document.cookie = a + ';expires=' + now + ';path=/'
-            document.cookie = 'login=' + this.loginin + ';expires=' + now + ';path=/'
-            console.log(document.cookie)
-            location.href = '/'
-          }
-        })
-        .catch(e => {
-          console.log(e)
-        })
-    }
-  }
-}
-</script>

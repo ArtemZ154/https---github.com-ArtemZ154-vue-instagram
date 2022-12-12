@@ -593,47 +593,24 @@ export default {
       loginin: '',
       passwordin: '',
       url: document.location.pathname,
-      account: getCookie('login'),
+      account: localStorage.getItem('login'),
       up: {},
       posts: {},
       components_key_re: 0
     }
   },
   created () {
-    axios
-      .post(
-        addr + '/check_ses',
-        {
-          user_sid: getCookie('user_sid')
-        },
-        {
-          withCredentials: true
-        }
-      )
-      .then((response) => {
-        console.log(response)
-        if (String(response.data) === 'false') {
-          location.href = '/login'
-        }
-      })
-      .catch((e) => {
-        console.log(e)
-      })
     axios.post(
-      addr + '/personalpage',
+      addr + '/users/userData',
       {
-        user_sid: document.cookie,
-        login: this.url,
-        login_from: getCookie('login')
+        login: (this.url).slice(9)
       },
       {
         withCredentials: true
       }
     )
       .then((response) => {
-        this.up = response.data.up
-        this.posts = response.data.postss
-        console.log(this.posts)
+        console.log(response.data)
       })
       .catch((e) => {
         console.log(e)
